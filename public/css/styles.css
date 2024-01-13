@@ -1,6 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=Lato:wght@100;300;400;700;900&family=Rethink+Sans:wght@400;500;600;700;800&display=swap');
+
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+/* ================================================ */
+/*      CORE ELEMENTS: BTS, HEADER, FOOTER */
+/* ================================================ */
+
+   /* ------> Behind the Scenes */
+
+  :root {
+    --primary-color: #2176AE;
+    --secondary-color: #F3D430;
+    --tertiary-color: #F08700;
+    --light-color: white;
+    --dark-color: #24282E;
+    --sans-text: "Rethink Sans", Tahoma, sans-serif;
+    --sans-text2: "Lato", Tahoma, sans-serif;
+    --serif-text: "EB Garamond", Times,serif;
+  }
+
+  body{
+    background-image: none;
+  }
+   /* ------> Wrapper */
+
+   #wrapper {
+      background-color: white;
+      border: none;
+      max-width: 80%;
+      margin: 0 auto;
+   }
+
+   /* ------> Header */
+  header{
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 1rem;
+    
+  }
+
+  .siteName{
+    font-family: var(--serif-text);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    text-decoration: none;
+    
+  }
+      /* Site Name Hyperlink Styling */
+      .siteName a{
+        text-decoration: none;
+      }
+      .siteName a:visited{
+        color: var(--dark-color);
+      }
+
+  #tools a{
+    font-family: var(--sans-text);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--dark-color);
+    text-decoration: none;
+  }
+  
+   /* ------> Navigation */
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: var(--dark-color);
+  font-family: var(--sans-text);
+  color: var(--light-color);
+  font-size: 1.25rem;
+  padding: 1.25rem;
+  list-style-type: none;
+}
+
+  /* ------> Footer */
+
+  footer{
+    font-family: var(--sans-text2);
+  }
+
+
+/* ================================================ */
+/*                  MAIN CONTENT
+/* ================================================ */
+
+/* --------> Main Content */
+
+body h1{
+  font-family: var(--serif-text);
+  font-weight: 700;
+  color: var(--dark-color);
+}
+
+.banner{
+  text-align: center;
+}
+
+.hero-img{
+  width: 80%;
+  margin: 0 auto;
+}
+
+ /* "Own Today" Section */
+
+  .pop-up{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    top: 15em;
+    left: 3em;
+    padding: 1rem 1rem;
+  }
+
+  .pop-up h4{
+    font-family: var(--serif-text);
+    font-size: 1.25rem;
+    color: #2176AE;
+    margin: 0 auto;
+  }
+
+  .pop-up p{
+    font-family: var(--sans-text);
+    font-size: 1rem;
+  }
+
+  #button a{
+    background-color: #2176AE;
+    color: var(--dark-color);
+    font-family: var(--sans-text);
+    border-radius: 8px;
+    padding: 0.5rem;
+    text-decoration: none;
+    max-width: 3rem;
+  }
+
+/* ---------> Main Grid */
+
+.main-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.main-grid > section > h2 {
+  font-family: var(--serif-text);
+  color: var(--dark-color);
+  font-size: 1.75rem;
+}
+
+ /* Delorean Upgrades Section */
+.upgrades{
+  grid-column: 1/1;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.upgrade-parts{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  text-align: center;
+  justify-content: space-around;
+}
+
+.upgrade-parts div{
+  background-color: #2176AE;
+  margin: 1rem;
+  padding: 10px;
+}
+
+.upgrade-parts div a{
+  font-family: var(--sans-text2);
+  color: white;
+  text-decoration: none;
+}
+
+/* Delorean Reviews Section */
+
+.reviews{
+  grid-column: 1/1;
+}
+
+.reviews ul > li{
+  font-family: var(--sans-text);
+  font-size: 1.15rem;
+  padding: 1rem;
+}
+
+/* ======= MEDIUM MEDIA SCREENS ======== */
+@media only screen and (min-width: 30em){
+
+  body{
+      background-image: url('../images/site/checkerboard.jpg');
+    }
+
+  #wrapper {
+    background-color: white;
+    border: 6px solid #2176AE;
+    border-radius: 10px;
+  }
+
+  .pop-up{
+    top: 15em;
+    left: 7em;
+    padding: 2rem 1rem;
+  }
+  .pop-up h4{
+    font-size: 1.25rem;
+  }
+
+  .pop-up p{
+    font-size: 1rem;
+  }
+
+  #button a{
+    border-radius: 8px;
+    padding: 0.5rem;
+    text-decoration: none;
+    max-width: 5rem;
+  }
+
+  .main-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .upgrades{
+    grid-column: 1/2;
+  }
+  
+  .reviews{
+    grid-column: 2/3;
+  }
+
+
+/* END OF MEDIA QUERY*/
+}
+
+/* ======= LARGER MEDIA SCREENS ======== */
+@media only screen and (min-width: 50em){
+
+  body{
+      background-image: url('../images/site/checkerboard.jpg');
+    }
+
+  #wrapper {
+      background-color: white;
+      border: 6px solid #2176AE;
+      border-radius: 10px;
+  }
+
+  nav ul{
+    font-size: 1.25rem;
+    padding: 1rem;
+  }
+
+  .pop-up{
+    top: 20em;
+    left: 12em;
+    padding: 2rem 1rem;
+  }
+  .pop-up h4{
+    font-family: var(--serif-text);
+    font-size: 1.65rem;
+  }
+
+  .pop-up p{
+    font-size: 1.25rem;
+  }
+
+  #button a{
+    padding: 1rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+  }
+
+
+  .main-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .upgrades{
+    grid-column: 1/2;
+  }
+
+  
+  .reviews{
+    grid-column: 2/3;
+  }
+
+/* END OF MEDIA QUERY*/
 }
