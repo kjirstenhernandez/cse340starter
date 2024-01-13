@@ -14,7 +14,7 @@
    /* ------> Behind the Scenes */
 
   :root {
-    --primary-color: #2176AE;
+    --primary-color: #247ABD;
     --secondary-color: #F3D430;
     --tertiary-color: #F08700;
     --light-color: white;
@@ -118,7 +118,7 @@ body h1{
     flex-direction: column;
     text-align: center;
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.75);
     border-radius: 10px;
     top: 15em;
     left: 3em;
@@ -128,7 +128,7 @@ body h1{
   .pop-up h4{
     font-family: var(--serif-text);
     font-size: 1.25rem;
-    color: #2176AE;
+    color: var(--primary-color);
     margin: 0 auto;
   }
 
@@ -138,8 +138,8 @@ body h1{
   }
 
   #button a{
-    background-color: #2176AE;
-    color: var(--dark-color);
+    background-color: var(--primary-color);
+    color: white;
     font-family: var(--sans-text);
     border-radius: 8px;
     padding: 0.5rem;
@@ -175,7 +175,7 @@ body h1{
 }
 
 .upgrade-parts div{
-  background-color: #2176AE;
+  background-color: var(--primary-color);
   margin: 1rem;
   padding: 10px;
 }
@@ -207,7 +207,7 @@ body h1{
 
   #wrapper {
     background-color: white;
-    border: 6px solid #2176AE;
+    border: 6px solid var(--primary-color);
     border-radius: 10px;
   }
 
