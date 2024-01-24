@@ -199,6 +199,27 @@ body h1{
   padding: 1rem;
 }
 
+/* -------Dynamic Pages------- */
+
+#mainHeader{
+  font-family: var(--serif-text);
+  text-align: center;
+  margin: 0 auto;
+}
+
+#inv-display {
+  font-family: var(--sans-text);
+}
+
+#inv-display li{
+  list-style-type: none;
+}
+
+#inv-display li a{
+  text-decoration: none;
+  color: var(--dark-color);
+}
+
 /* ======= MEDIUM MEDIA SCREENS ======== */
 @media only screen and (min-width: 30em){
 
