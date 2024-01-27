@@ -19,4 +19,28 @@ invCont.buildByClassificationId = async function (req, res, next) {
   })
 }
 
+/* ***************************
+ *  Build inventory by detail view
+ * ************************** */
+invCont.buildVehicleDetails = async function (req, res, next) {
+  const inventory_id = req.params.inventoryId
+  const data = await invModel.getInventoryByInventoryId(inventory_id)
+  const grid = await utilities.buildSingleGrid(data)
+  let nav = await utilities.getNav()
+  const className = data[0].inv_make + data[0].inv_model
+  res.render("./inventory/single", {
+    title: className,
+    nav,
+    grid,
+  })
+}
+
+/* ***************************
+ *  Build error page
+ * ************************** */
+invCont.buildError = function (req, res, next) {
+  throw {message:"fubar"}
+  }
+
+
 module.exports = invCont

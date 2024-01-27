@@ -57,6 +57,35 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* **************************************
+* Build the Single view HTML
+* ************************************ */
+
+Util.buildSingleGrid = async function(data){
+  let grid
+  grid += "<div class=singleGrid>"
+  data.forEach(vehicle => {
+    grid += '<section id=singleImage>'
+      grid += '<img src="' + vehicle.inv_image 
+      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+      +' on CSE Motors" />'
+    grid += '</section>'
+    grid += '<section id=singleDetails>'
+      grid += `<h1>${vehicle.inv_make} ${vehicle.inv_model}</h1>`
+      grid += '<hr />'
+      grid += `<h3>Price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</h3>`
+      grid += `<h3>Description: ${vehicle.inv_description}</h3>`
+      grid += `<h3>Color: ${vehicle.inv_color}</h3>`
+      grid += `<h3>Miles: ${vehicle.inv_miles}</h3>`
+    grid += '</section>'
+  })
+  grid += "</div>"
+
+  return grid
+}
+
+
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
