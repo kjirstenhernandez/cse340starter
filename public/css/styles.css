@@ -220,6 +220,43 @@ body h1{
   color: var(--dark-color);
 }
 
+/* Cars - Grid View */
+
+#inv-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+#inv-display li {
+  margin: 1rem;
+  max-width: 10rem;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#inv-display li h2{
+  font-size: 1.15rem;
+}
+
+/* Single View */
+
+.singleGrid{
+  display: grid;
+  grid-template-columns: repeat(2 auto);
+}
+
+#singleImage{
+  grid-column: 1/2;
+}
+
+#singleDetails{
+  grid-column: 2/3;
+  padding: 1rem;
+}
+
 /* ======= MEDIUM MEDIA SCREENS ======== */
 @media only screen and (min-width: 30em){
 
@@ -270,6 +307,10 @@ body h1{
     grid-column: 2/3;
   }
 
+  /* Vehicle Grid View */
+  #inv-display {
+    flex-direction: row;
+  }
 
 /* END OF MEDIA QUERY*/
 }
@@ -325,6 +366,12 @@ body h1{
   
   .reviews{
     grid-column: 2/3;
+  }
+
+  /* Vehicle Grid View */
+
+  #inv-display {
+    flex-direction: row;
   }
 
 /* END OF MEDIA QUERY*/
