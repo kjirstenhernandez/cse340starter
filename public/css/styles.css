@@ -32,8 +32,6 @@
    #wrapper {
       background-color: white;
       border: none;
-      max-width: 80%;
-      margin: 0 auto;
    }
 
    /* ------> Header */
@@ -72,8 +70,9 @@
    /* ------> Navigation */
 
 nav ul {
+  text-align: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   background-color: var(--dark-color);
   font-family: var(--sans-text);
@@ -81,6 +80,15 @@ nav ul {
   font-size: 1.05rem;
   padding: 1.05rem;
   list-style-type: none;
+}
+
+nav ul li {
+  padding: 10px;
+}
+
+nav ul li a{
+  text-decoration: none;
+  color: var(--light-color);
 }
 
   /* ------> Footer */
@@ -241,21 +249,41 @@ body h1{
   font-size: 1.15rem;
 }
 
+#inv-display li a img{
+  height: auto;
+  max-width: 9.5rem;
+  border-radius: 5px;
+}
+
 /* Single View */
 
 .singleGrid{
   display: grid;
-  grid-template-columns: repeat(2 auto);
+  grid-template-columns: repeat(1 auto);
+}
+#mainHeader{
+  font-family: var(--serif-text);
 }
 
 #singleImage{
-  grid-column: 1/2;
+  grid-column: 1;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+#singleImage img{
+  height: auto; 
+  width: auto; 
+  max-width: 100%; 
 }
 
 #singleDetails{
-  grid-column: 2/3;
+  grid-column: 1;
   padding: 1rem;
+  font-size: 1.25rem;
+  font-family: var(--sans-text);
 }
+
 
 /* ======= MEDIUM MEDIA SCREENS ======== */
 @media only screen and (min-width: 30em){
@@ -265,6 +293,7 @@ body h1{
     }
 
   nav ul{
+    flex-direction: row;
     font-size: 1.10rem;
     padding: 1.10rem;
   }
@@ -273,6 +302,8 @@ body h1{
     background-color: white;
     border: 6px solid var(--primary-color);
     border-radius: 10px;
+    max-width: 80%;
+    margin: 0 auto;
   }
 
   .pop-up{
@@ -312,6 +343,21 @@ body h1{
     flex-direction: row;
   }
 
+  /* Single View */
+
+.singleGrid{
+  grid-template-columns: repeat(2 auto);
+}
+
+
+#singleImage{
+  grid-column: 1/2;
+}
+
+#singleDetails{
+  grid-column: 1/2;
+}
+
 /* END OF MEDIA QUERY*/
 }
 
@@ -326,10 +372,12 @@ body h1{
       background-color: white;
       border: 6px solid #2176AE;
       border-radius: 10px;
+      max-width: 80%;
+      margin: 0 auto;
   }
 
   nav ul{
-    
+    flex-direction: row;
     font-size: 1.25rem;
     padding: 1.25rem;
   }
@@ -373,6 +421,19 @@ body h1{
   #inv-display {
     flex-direction: row;
   }
+
+  /* Single View  */
+
+  .singleGrid{
+    grid-template-columns: repeat(2 auto);
+  }
+  
+  #singleImage{
+    grid-column: 1/2;
+  }
+  
+  #singleDetails{
+    grid-column: 2/3;}
 
 /* END OF MEDIA QUERY*/
 }
