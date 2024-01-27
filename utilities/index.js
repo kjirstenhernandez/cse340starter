@@ -72,11 +72,10 @@ Util.buildSingleGrid = async function(data){
     grid += '</section>'
     grid += '<section id=singleDetails>'
       grid += `<h1>${vehicle.inv_make} ${vehicle.inv_model}</h1>`
-      grid += '<hr />'
-      grid += `<h3>Price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</h3>`
-      grid += `<h3>Description: ${vehicle.inv_description}</h3>`
-      grid += `<h3>Color: ${vehicle.inv_color}</h3>`
-      grid += `<h3>Miles: ${vehicle.inv_miles}</h3>`
+      grid += `<p><b>Price:</b> $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>`
+      grid += `<p><b>Description:</b> ${vehicle.inv_description}</p>`
+      grid += `<p><b>Color:</b> ${vehicle.inv_color}</p>`
+      grid += `<p><b>Miles:</b> ${vehicle.inv_miles}</p>`
     grid += '</section>'
   })
   grid += "</div>"
