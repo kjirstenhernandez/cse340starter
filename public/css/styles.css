@@ -259,7 +259,7 @@ body h1{
 
 .singleGrid{
   display: grid;
-  grid-template-columns: repeat(1 auto);
+  grid-template-columns: repeat(1, auto);
 }
 #mainHeader{
   font-family: var(--serif-text);
@@ -346,7 +346,7 @@ body h1{
   /* Single View */
 
 .singleGrid{
-  grid-template-columns: repeat(2 auto);
+  grid-template-columns: repeat(2, auto);
 }
 
 
@@ -425,7 +425,7 @@ body h1{
   /* Single View  */
 
   .singleGrid{
-    grid-template-columns: repeat(2 auto);
+    grid-template-columns: repeat(2, auto);
   }
   
   #singleImage{
