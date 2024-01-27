@@ -39,7 +39,7 @@ invCont.buildVehicleDetails = async function (req, res, next) {
  *  Build error page
  * ************************** */
 invCont.buildError = function (req, res, next) {
-  throw {message:"fubar"}
+  throw {message:"Error"}
   }
 
 
