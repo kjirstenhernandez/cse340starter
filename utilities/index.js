@@ -63,7 +63,7 @@ Util.buildClassificationGrid = async function(data){
 
 Util.buildSingleGrid = async function(data){
   let grid
-  grid += "<div class=singleGrid>"
+  grid = "<div class=singleGrid>"
   data.forEach(vehicle => {
     grid += '<section id=singleImage>'
       grid += '<img src="' + vehicle.inv_image 
