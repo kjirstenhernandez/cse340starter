@@ -291,9 +291,10 @@ body h1{
 .form {
   background-color: #247ABD;
   margin: 0 auto;
-  text-align: center;
   font-family: var(--sans-text);
   color: white;
+  text-align: center;
+  border-radius: 10px;
 }
 
 #loginForm {
@@ -312,18 +313,16 @@ body h1{
 #submit {
   margin: 1rem auto;
   padding: 0.5rem;
-  /* font-family: var(--sans-text); */
 }
 
 .above{
   padding: 1rem 0 0.25rem;
-  /* font-family: var(--sans-text); */
   color: white;
+  text-align: center;
 }
 
 #loginForm p{
   padding: 1rem;
-  /* font-family: var(--sans-text); */
   color: white;
 }
 
@@ -333,18 +332,28 @@ body h1{
   color: white;
 }
 
+.input {
+  border-radius: 6px;
+}
+
 /* ================================================ */
 /*                 REGISTRATION PAGE
 /* ================================================ */
 
-#registerForm {
+#registerForm{
   margin: 0 auto;
+  text-align: center;
   padding: 2rem;
   max-width: 20rem;
   border-radius: 10px;
 }
 
-#registerForm input{
+#registerInput {
+  margin: 0 auto;
+  
+}
+
+#registerInput input{
   width: 15rem;
   padding: 0.50rem 0;
   border-radius: 5px;
@@ -353,13 +362,9 @@ body h1{
 #registerSubmit {
   display: block;
   padding: 0.5 1rem;
-  margin: 1rem auto;
+  margin: 2rem auto;
   
 
-}
-
-label.above {
-  text-align: left;
 }
 
 /* ================================================ */
