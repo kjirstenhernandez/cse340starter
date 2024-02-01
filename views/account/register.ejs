@@ -1,0 +1,21 @@
+<% if (title) { %>
+    <h1 id="mainHeader"><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+
+<% messages() %>
+
+<form>
+    <div class="form" id="registerForm">
+        <label class="above label" for="account_firstname">First Name</label>
+        <input type="text" name="account_firstname" placeholder="Doc" required>
+        <label class="above label" for="account_lastname">Last Name</label>
+        <input type="text" name="account_lastname" placeholder="Brown" required>
+        <label class="above label" for="account_email">Email Address</label>
+        <input type="email" name="account_email" placeholder="therearenoroads@future.com" required>
+        <label for="account_password" class="above label">Password</label>
+        <input type="password" name="account_password" minlength="12" required>
+        <input type="submit" id="registerSubmit" value="Register">
+    </div>
+</form>
