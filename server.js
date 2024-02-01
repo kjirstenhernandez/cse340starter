@@ -54,6 +54,7 @@ app.use(static)
 // inventory Route
 app.use("/inv", inventoryRoute)
 
+// account route
 app.use("/account", accountRoute)
 
 // Index route
