@@ -34,6 +34,10 @@
       border: none;
    }
 
+   .notice li{
+    color: red;
+    font-family: var(--sans-text);
+   }
    /* ------> Header */
   header{
     display: flex;
@@ -336,6 +340,14 @@ body h1{
   border-radius: 6px;
 }
 
+#loginForm input:required {
+  border-left:red solid 6px;
+}
+
+#loginForm input:required:valid {
+  border-left:green solid 6px;
+}
+
 /* ================================================ */
 /*                 REGISTRATION PAGE
 /* ================================================ */
@@ -350,8 +362,15 @@ body h1{
 
 #registerInput {
   margin: 0 auto;
-  
 }
+.input:required {
+  border-left:red solid 6px;
+}
+
+.input:required:valid {
+  border-left:green solid 6px;
+}
+
 
 #registerInput input{
   width: 15rem;
@@ -363,8 +382,6 @@ body h1{
   display: block;
   padding: 0.5 1rem;
   margin: 2rem auto;
-  
-
 }
 
 /* ================================================ */
