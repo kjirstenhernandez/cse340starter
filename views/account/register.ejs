@@ -14,15 +14,15 @@
     </ul>
     <% } %>
 
-    
+
 <form id="registerForm" action="/account/register" method="post">
     <div class="form" id="registerInput">
         <label class="above label" for="account_firstname">First Name</label>
-        <input class="input" type="text" name="account_firstname" placeholder="Doc" required>
+        <input class="input" type="text" name="account_firstname" placeholder="Doc" required value="<%= locals.account_firstname %>">
         <label class="above label" for="account_lastname">Last Name</label>
-        <input class="input" type="text" name="account_lastname" placeholder="Brown" required>
+        <input class="input" type="text" name="account_lastname" placeholder="Brown" required value="<%= locals.account_lastname %>">
         <label class="above label" for="account_email">Email Address</label>
-        <input class="input" type="email" name="account_email" placeholder="therearenoroads@future.com" required>
+        <input class="input" type="email" name="account_email" placeholder="therearenoroads@future.com" required value="<%= locals.account_email %>">
         <label for="account_password" class="above label">Password</label>
         <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital, and 1 special character</span>
         <input class="input" type="password" name="account_password" minlength="12" required

@@ -19,5 +19,12 @@ router.post(
     utilities.handleErrors(accountController.registerAccount)
   )
 
-  
+// Temporary for Login Process
+router.post(
+    "/login",
+    (req, res) => {
+        res.status(200).send('login process')
+    }
+)
+
 module.exports = router;
