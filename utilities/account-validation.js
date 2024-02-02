@@ -14,22 +14,22 @@ validate.loginRules = () => {
             .isLength({min: 1})
             .withMessage("Please provide a valid email.") 
             .custom(async (account_email) => {
-                const emailExists = accountModel(accountModel.checkExistingEmail(account_email))
+                const emailExists = accountModel.checkExistingEmail(account_email)
                 if (!emailExists) {
                     throw new Error("Email does not exist.")
                 }
             }),
         
-        body("account_password")
+        body("account_email", "account_password")
             .trim()
             .isLength({min:1})
-            .withMessage("Please provide a valid password.") 
-            .custom(async (account_email, account_password) => {
-                const passwordMatches = accountModel(accountModel.checkPassword(account_email, account_password))
-                if (!passwordMatches) {
-                    throw new Error ("Incorrect Password.")
-                }
-            })
+            .withMessage("Please provide a valid password.")
+            // .custom(async (account_email, account_password) => {
+            //     const passwordMatches = accountModel.checkPassword(account_email, account_password)
+            //     if (!passwordMatches) {
+            //         throw new Error ("Incorrect Password.")
+            //     }
+            // })
     ]
 }
 
@@ -107,7 +107,7 @@ validate.checkRegData = async (req, res, next) => {
  * ***************************** */
 
 validate.checkLoginData = async (req, res, next) => {
-    const { account_email, account_password } = req.body
+    // const { account_email, account_password } = req.body
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -116,7 +116,7 @@ validate.checkLoginData = async (req, res, next) => {
             errors,
             title: "Login",
             nav,
-            account_email
+            // account_email
         })
         return
     }

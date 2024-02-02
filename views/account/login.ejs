@@ -7,11 +7,12 @@
 <%- messages() %>
 
 <% if (errors) { %>
-    <ul><%errors.array().forEach(error => {%>
-        <li><%= error.msg%></li>
-    <% }) %>
-    </ul>
-<% } %> <!-- Question:  Why this format? -->
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %> <!-- Question:  Why this format? -->
 
 <form id="logForm" action="/account/login" method="post">
     <div class="form" id="loginForm">
