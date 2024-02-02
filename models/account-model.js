@@ -9,7 +9,7 @@ async function registerAccount(account_firstname, account_lastname, account_emai
     }
 }
 
-async function checkExistingEmail(){
+async function checkExistingEmail(account_email){
     try{
         const sql = "SELECT * FROM account WHERE account_email = $1"
         const email = await pool.query(sql, [account_email])
