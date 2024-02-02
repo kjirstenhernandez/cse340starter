@@ -6,6 +6,13 @@
 
 <%- messages() %>
 
+<% if (errors) { %>
+    <ul><%errors.array().forEach(error => {%>
+        <li><%= error.msg%></li>
+    <% }) %>
+    </ul>
+<% } %> <!-- Question:  Why this format? -->
+
 <form id="logForm" action="/account/login" method="post">
     <div class="form" id="loginForm">
         <label for="account_email" class="above label">Email</label>
