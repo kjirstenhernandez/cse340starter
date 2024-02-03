@@ -13,8 +13,9 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin))
 router.post(
     "/login",
     logValidate.loginRules(),
-    logValidate.checkLoginData,
-    utilities.handleErrors(accountController.buildLogin)
+    logValidate.checkLoginData, (req, res) => {
+        res.status(200).send('login process')
+      }
 )
 
 // Process to build the Registration Page
