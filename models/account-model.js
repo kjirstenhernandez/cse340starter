@@ -20,4 +20,4 @@ async function checkExistingEmail(account_email){
 }
 
 
-module.exports = {registerAccount, checkExistingEmail, checkPassword}
+module.exports = {registerAccount, checkExistingEmail}
