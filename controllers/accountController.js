@@ -25,6 +25,16 @@ async function buildRegistration(req, res, next){
     })
 }
 
+// Build Managment View
+async function buildManagement(req, res, next){
+  let nav = await utilities.getNav()
+  res.render("/inv", {
+      title: "Register",
+      nav,
+      errors: null,
+  })
+}
+
 // Process Registration
 async function registerAccount(req, res) {
   let nav = await utilities.getNav()
@@ -59,12 +69,14 @@ async function registerAccount(req, res) {
     res.status(201).render("account/login", {
       title: "Login",
       nav,
+      errors: null, // Added later
     })
   } else {
     req.flash("notice", "Sorry, the registration failed.")
     res.status(501).render("account/register", {
       title: "Registration",
       nav,
+      errors: null, //added later
     })
   }
 }
