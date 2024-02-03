@@ -8,11 +8,13 @@
 
 <% if (errors) { %>
     <ul class="notice">
-   <% errors.array().forEach(error => { %>
-     <li><%= error.msg %></li>
-  <%  }) %>
-   </ul>
-  <% } %> <!-- Question:  Why this format? -->
+        <% errors.array().forEach(error=> { %>
+            <li>
+                <%= error.msg %>
+            </li>
+            <% }) %>
+    </ul>
+    <% } %>
 
 <form id="logForm" action="/account/login" method="post">
     <div class="form" id="loginForm">
