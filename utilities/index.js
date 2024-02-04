@@ -83,7 +83,38 @@ Util.buildSingleGrid = async function(data){
   return grid
 }
 
+/* ****************************************
+ * Build Management View
+ **************************************** */
+Util.buildLinks = async function(classificationLink, vehicleLink) {
+  let grid
+  grid = "<div class=management>"
+  grid+= `<a href="${classificationLink}"> Add New Classification</a>`
+  grid+= `<a href="${vehicleLink}"> Add New Vehicle</a>`
+  grid += "</div>"
 
+  return grid
+  }
+
+/* ****************************************
+ * Build addClassification Form
+ **************************************** */
+Util.buildClassificationForm = async function () {
+  let form = 
+    "<div class='addClass'>" +
+        "<p>Field is Required</p>" +
+        "<fieldset>" +
+          "<form id='addClassForm' method='post' action='/inv/addClassification'>" +
+            "<label for='classification_name'>Classification Name</label>" +
+            "<span>Name must be alphabetic characters only</span>" +  
+            "<input type='text' placeholder='e.g. Truck' pattern = {[a-zA-Z]} name = 'classification_name' required>" +
+            "<input type='submit'>" +
+          "</form>" +
+        "</fieldset>" +
+    "</div>"
+
+    return form
+}
 
 /* ****************************************
  * Middleware For Handling Errors

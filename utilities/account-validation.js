@@ -82,6 +82,18 @@ validate.registrationRules = () => {
     ]
   }
 
+/*  **********************************
+ *  AddClassification Validation Rules
+ * ********************************* */
+validate.addClassificationRules = () => {
+  return [
+  body("classification_name")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a classification name.")
+  ]
+}
+
 /* ******************************
  * Check data and return errors or continue to registration
  * ***************************** */
@@ -120,6 +132,27 @@ validate.checkLoginData = async (req, res, next) => {
             title: "Login",
             nav,
             account_email
+        })
+        return
+    }
+    next()
+}
+
+  /* ******************************
+ * Check Classification
+ * ***************************** */
+
+  validate.checkClassificationData = async (req, res, next) => {
+    const { classification_name } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        res.render("inv/addClassification", {
+            errors,
+            title: "Login",
+            nav,
+            classification_name
         })
         return
     }

@@ -42,5 +42,32 @@ invCont.buildError = function (req, res, next) {
   throw {message:"Error"}
   }
 
+/* ***************************
+ *  Build Management page
+ * ************************** */
+invCont.buildManagement = async function (req,res,next) {
+  const grid = await utilities.buildLinks("./addClassification", "./add-inventory")
+  let nav = await utilities.getNav()
+  res.render("./inventory/management", {
+    title: "Vehicle Management",
+    nav,
+    grid
+}
+  )}
 
+/* *******************************
+ *  Build addClassification Page
+ * ******************************* */
+
+invCont.buildAddClassification = async function (req,res,next) {
+  const form = await utilities.buildClassificationForm()
+  let nav = await utilities.getNav()
+  res.render("./inventory/addClassification", {
+    title: "Add a Classification",
+    nav,
+    form,
+    errors: null,
+}
+  )}
+  
 module.exports = invCont
