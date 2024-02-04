@@ -90,6 +90,7 @@ validate.addClassificationRules = () => {
   body("classification_name")
       .trim()
       .isLength({ min: 1 })
+      .isAlpha()
       .withMessage("Please provide a classification name.")
   ]
 }
@@ -148,10 +149,12 @@ validate.checkLoginData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
+        const form = await utilities.buildClassificationForm()
         res.render("inv/addClassification", {
             errors,
-            title: "Login",
+            title: "Add Classification",
             nav,
+            form,
             classification_name
         })
         return
