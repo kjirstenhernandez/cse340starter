@@ -2,6 +2,7 @@ const utilities = require(".")
 const { body, validationResult } = require("express-validator")
 const validate = {}
 const accountModel = require("../models/account-model")
+const invModel = require("../models/inventory-model")
 
 /*  **********************************
  *     Login Data Validation Rules
@@ -95,6 +96,63 @@ validate.addClassificationRules = () => {
   ]
 }
 
+/*  **********************************
+ *  Add-Inventory Validation Rules
+ * ********************************* */
+
+validate.addInventoryRules = () => {
+  return [
+
+    body("inv_make")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a make."),
+
+    body("inv_model")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a valid model."),
+    
+    body("inv_year")
+      .trim()
+      .isLength({ min: 1 })
+      .isNumeric(no_symbols = true)
+      .withMessage("Please provide a first name."),
+    
+    body("inv_description")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a valid description."),
+
+    body("inv_image")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a valid image path."),
+
+    body("inv_thumbnail")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a valid thumbnail path."),
+    
+    body("inv_price")
+      .trim()
+      .isLength({ min: 1 })
+      .isNumeric(no_symbols = true)
+      .withMessage("Please provide a valid price (no symbols or decimals)."),
+
+    body("inv_miles")
+      .trim()
+      .isLength({ min: 1 })
+      .isNumeric(no_symbols = true)
+      .withMessage("Please provide a valid price (no symbols or decimals)."),
+
+    body("inv_color")
+      .trim()
+      .isLength({ min: 1 })
+      .isAlpha()
+      .withMessage("Please provide a valid color."),
+  ]}
+
 /* ******************************
  * Check data and return errors or continue to registration
  * ***************************** */
@@ -140,7 +198,7 @@ validate.checkLoginData = async (req, res, next) => {
 }
 
   /* ******************************
- * Check Classification
+ * Check Classification Registration
  * ***************************** */
 
   validate.checkClassificationData = async (req, res, next) => {
@@ -150,12 +208,43 @@ validate.checkLoginData = async (req, res, next) => {
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
         const form = await utilities.buildClassificationForm()
-        res.render("inv/addClassification", {
+        res.render("inventory/addClassification", {
             errors,
             title: "Add Classification",
             nav,
             form,
             classification_name
+        })
+        return
+    }
+    next()
+}
+  /* ******************************
+ * Check Inventory Registration
+ * ***************************** */
+
+  validate.checkInventoryData = async (req, res, next) => {
+    const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        let data = await invModel.getClassifications()
+        const form = await utilities.buildInventoryForm(data)
+        res.render("inventory/add-inventory", {
+            errors,
+            title: "Add Inventory",
+            nav,
+            form,
+            inv_make,
+            inv_model,
+            inv_year,
+            inv_description,
+            inv_thumbnail,
+            inv_image,
+            inv_price,
+            inv_miles,
+            inv_color
         })
         return
     }

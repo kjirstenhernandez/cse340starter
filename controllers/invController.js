@@ -69,5 +69,22 @@ invCont.buildAddClassification = async function (req,res,next) {
     errors: null,
 }
   )}
+
+/* *******************************
+ *  Build addInventory Page
+ * ******************************* */
+
+invCont.buildAddInventory = async function (req,res,next) {
+  let data = await invModel.getClassifications()
+  const form = await utilities.buildInventoryForm(data)
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-inventory", {
+    title: "Add Inventory",
+    nav,
+    form,
+    errors: null,
+}
+  )}
+
   
 module.exports = invCont

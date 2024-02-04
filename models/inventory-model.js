@@ -42,7 +42,9 @@ async function getInventoryByInventoryId(inventory_id) {
     console.error("getclassificationsbyid error " + error)
   }
 }
-
+/* ***************************
+ *  Register New Classification
+ * ************************** */
 async function registerClassification(classification_name) {
   try {
       const sql = "INSERT INTO classification (classification_name) VALUES ($1) RETURNING *"
@@ -52,5 +54,17 @@ async function registerClassification(classification_name) {
   }
 }
 
+/* ***************************
+ *  Register New Inventory
+ * ************************** */
+async function registerInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color) {
+  try {
+      const sql = "INSERT INTO inventory (inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *"
+      return await pool.query(sql, [inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color])
+  } catch (error) {
+      return error.message
+  }
+}
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId, registerClassification};
+
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId, registerClassification, registerInventory};
