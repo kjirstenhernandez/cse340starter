@@ -402,6 +402,63 @@ body h1{
 }
 
 /* ================================================ */
+/*         ADD CLASSIFICATION/INVENTORY PAGES 
+/* ================================================ */
+
+.addClass{
+  margin: 0 auto;
+  width: 80%;
+  background-color: var(--primary-color);
+  padding: 1rem;
+  border-radius: 10px;
+  font-family: var(--sans-text);
+  color: white;
+}
+
+#addClassForm {
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.above{
+  display: block;
+  text-align: left;
+}
+
+.left{
+  display: inline;
+}
+#selectClass{
+  margin-left: .5rem;
+  padding: .5rem;
+  border-radius: 5px;
+  font-family: var(--sans-text2);
+}
+
+#addClassForm input[type=text], input[type=number]{
+  display: inline;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: .5rem;
+  border-radius: 5px;
+  border: none;
+}
+
+#addClassForm textarea {
+  width: 100%;
+  border-radius: 5px;
+}
+
+#classSubmit {
+  display: block;
+  margin: 0 auto;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  font-family: var(--sans-text2);
+}
+
+/* ================================================ */
 /*                   MEDIA QUERIES
 /* ================================================ */
 /* ======= MEDIUM MEDIA SCREENS ======== */

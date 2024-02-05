@@ -105,10 +105,10 @@ Util.buildClassificationForm = async function () {
         "<p>Field is Required</p>" +
         "<fieldset>" +
           "<form id='addClassForm' method='post' action='/inv/addClassification'>" +
-            "<label for='classification_name'>Classification Name</label>" +
-            "<span>Name must be alphabetic characters only</span>" +  
-            "<input type='text' placeholder='e.g. Truck' pattern=/^[a-zA-Z]+$/ name='classification_name' required" +
-            "<input type='submit'>" +
+            "<label class='above' for='classification_name'>Classification Name</label>" +
+            "<span id=rules>Name must be alphabetic characters only</span>" +  
+            "<input type='text' placeholder='e.g. Truck' pattern=/^[a-zA-Z]+$/ name='classification_name' required>" +
+            "<input type='submit' id=classSubmit>" +
           "</form>" +
         "</fieldset>" +
     "</div>"
@@ -126,23 +126,24 @@ Util.buildInventoryForm = async function (data) {
       form += "<fieldset>"
         form += "<form id='addClassForm' method='post' action='/inv/add-inventory'>"
 
-        form += "<select id=selectClass name=classification_name>"
+        form += "<label class='left' for='classification_name'>Classification</label>"
+        form += "<select id=selectClass name='classification_name'>"
           form += "<option>Select One</option>"
           data.rows.forEach((row) => {
           form += `<option>${row.classification_name}</option>`})
         form += "</select>"
       
-        form += "<label for=inv_make>Make</label>"
+        form += "<label class='above' for=inv_make>Make</label>"
         form += `<input id=addMake type='text' placeholder='Min 3 Characters' name='inv_name' required value="<%= locals.inv_make %>">` 
 
-        form += "<label for=inv_model>Model</label>"
+        form += "<label class='above' for=inv_model>Model</label>"
         form += `<input type='text' placeholder='Min 3 Characters' name='inv_model' required>` 
         
-        form += "<label for=inv_year>Year</label>"
+        form += "<label class='above' for=inv_year>Year</label>"
         form += `<input type='number' placeholder='4-digit year' name='inv_year' required>` 
         
         form += "<label for=inv_description>Description</label>"
-        form += `<textarea name="inv_description" rows="4" cols="50"></textarea>`
+        form += `<textarea name="inv_description" rows="4"></textarea>`
 
         form += "<label for=inv_image>Image Path</label>"
         form += `<input type='text' placeholder='e.g. docs/image.png' name='inv_image' required>` 
