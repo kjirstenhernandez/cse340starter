@@ -102,56 +102,56 @@ validate.addClassificationRules = () => {
 
 validate.addInventoryRules = () => {
   return [
-
+    // firstname is required and must be string
     body("inv_make")
-      .trim()
-      .isLength({ min: 1 })
-      .withMessage("Please provide a make."),
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Please provide a make."),
 
-    body("inv_model")
-      .trim()
-      .isLength({ min: 1 })
-      .withMessage("Please provide a valid model."),
-    
-    body("inv_year")
-      .trim()
-      .isLength({ min: 1 })
-      .isNumeric(no_symbols = true)
-      .withMessage("Please provide a first name."),
-    
-    body("inv_description")
-      .trim()
-      .isLength({ min: 1 })
-      .withMessage("Please provide a valid description."),
+  body("inv_model")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Please provide a valid model."),
+  
+  body("inv_year")
+    .trim()
+    .isLength({ min: 4, max:4 })
+    .isNumeric(no_symbols = true)
+    .withMessage("Please provide a first name."),
+  
+  body("inv_description")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Please provide a valid description."),
 
-    body("inv_image")
-      .trim()
-      .isLength({ min: 1 })
-      .withMessage("Please provide a valid image path."),
+  body("inv_image")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Please provide a valid image path."),
 
-    body("inv_thumbnail")
-      .trim()
-      .isLength({ min: 1 })
-      .withMessage("Please provide a valid thumbnail path."),
-    
-    body("inv_price")
-      .trim()
-      .isLength({ min: 1 })
-      .isNumeric(no_symbols = true)
-      .withMessage("Please provide a valid price (no symbols or decimals)."),
+  body("inv_thumbnail")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Please provide a valid thumbnail path."),
+  
+  body("inv_price")
+    .trim()
+    .isLength({ min: 1 })
+    .isNumeric(no_symbols = true)
+    .withMessage("Please provide a number (no symbols or decimals)."),
 
-    body("inv_miles")
-      .trim()
-      .isLength({ min: 1 })
-      .isNumeric(no_symbols = true)
-      .withMessage("Please provide a valid price (no symbols or decimals)."),
+  body("inv_miles")
+    .trim()
+    .isLength({ min: 1 })
+    .isNumeric(no_symbols = true)
+    .withMessage("Please provide valid mileage (no symbols or decimals)."),
 
-    body("inv_color")
-      .trim()
-      .isLength({ min: 1 })
-      .isAlpha()
-      .withMessage("Please provide a valid color."),
-  ]}
+  body("inv_color")
+    .trim()
+    .isLength({ min: 1 })
+    .isAlpha()
+    .withMessage("Please provide a valid color."),
+    ]}
 
 /* ******************************
  * Check data and return errors or continue to registration
@@ -224,7 +224,7 @@ validate.checkLoginData = async (req, res, next) => {
  * ***************************** */
 
   validate.checkInventoryData = async (req, res, next) => {
-    const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
+    const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_name } = req.body
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -244,7 +244,8 @@ validate.checkLoginData = async (req, res, next) => {
             inv_image,
             inv_price,
             inv_miles,
-            inv_color
+            inv_color,
+            classification_name //added this
         })
         return
     }

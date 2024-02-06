@@ -105,21 +105,22 @@ async function registerClassification(req, res) {
   }
 }
 
-// Process AddClassification Registration
+// Process Add-Inventory Registration
 async function registerInventory(req, res) {
   let data = await invModel.getClassifications()
   const form = await utilities.buildInventoryForm(data)
   let nav = await utilities.getNav()
-  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color } = req.body
-
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color, inv_price, classification_name } = req.body
+  const classification_id = await invModel.getClassificationId(classification_name)
+  console.log(classification_id);
   const regResult = await invModel.registerInventory(
-    inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color
+    inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color, inv_price, classification_id
   )
 
   if (regResult) {
     req.flash(
       "notice",
-      `Congratulations, you\'ve registered the classification ${classification_name}.`
+      `Congratulations, you\'ve registered a new vehicle.`
     )
     res.status(201).render("inventory/add-inventory", {
       title: "Add Inventory",

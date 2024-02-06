@@ -14,5 +14,44 @@
     </ul>
     <% } %>
 
+<div class='addClass'>
+<p>All Fields are Required</p>
+
+<form id='addClassForm' method='post' action='/inv/add-inventory'>
+    <fieldset>
+        <label class='left' for='classification_name'>Classification</label>
+        
+        <%- form %>
+            
+        <label class='above' for=inv_make>Make</label>
+        <input id=addMake type='text' placeholder='Min 3 Characters' name='inv_make' required value="<%= locals.inv_make %>"> 
     
-<%- form %>
+        <label class='above' for=inv_model>Model</label>
+        <input type='text' placeholder='Min 3 Characters' name='inv_model' value="<%= locals.inv_model %>" required> 
+            
+        <label class='above' for=inv_year>Year</label>
+        <input type='number' placeholder='4-digit year' name='inv_year' value="<%= locals.inv_year %>" required> 
+            
+        <label for=inv_description>Description</label>
+        <textarea name=inv_description rows=4></textarea>
+    
+        <label for=inv_image>Image Path</label>
+        <input type='text' placeholder='e.g. docs/image.png' name='inv_image' value="<%= locals.inv_image %>" required> 
+    
+        <label for=inv_thumbnail>Thumbnail Path</label>
+        <input type='text' placeholder='e.g. docs/image_thumbnail.png' name='inv_thumbnail' value="<%= locals.inv_thumbnail %>" required> 
+    
+        <label for=inv_price>Price</label>
+        <input type='text' placeholder='No Commas or Decimals' pattern=^(0|[1-9][0-9]*)$ name='inv_price' value="<%= locals.inv_price %>" required> 
+    
+        <label for=inv_miles>Miles</label>
+        <input type='text' placeholder='No Commas' name='inv_miles' pattern=^(0|[1-9][0-9]*)$ value="<%= locals.inv_miles %>" required> 
+    
+        <label for=inv_color>Color</label>
+        <input type='text' placeholder='No Commas' name='inv_color' value="<%= locals.inv_color %>" required> 
+    
+    </fieldset>
+    
+    <input type='submit' id=invSubmit>
+</form>
+<%-  %>

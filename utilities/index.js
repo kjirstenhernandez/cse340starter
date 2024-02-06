@@ -120,51 +120,11 @@ Util.buildClassificationForm = async function () {
  * Build addInventory Form
  **************************************** */
 Util.buildInventoryForm = async function (data) {
-  let form 
-  form = "<div class='addClass'>"
-      form += "<p>All Fields are Required</p>"
-      form += "<fieldset>"
-        form += "<form id='addClassForm' method='post' action='/inv/add-inventory'>"
-
-        form += "<label class='left' for='classification_name'>Classification</label>"
-        form += "<select id=selectClass name='classification_name'>"
+  let form = "<select id=selectClass name='classification_name'>"
           form += "<option>Select One</option>"
           data.rows.forEach((row) => {
           form += `<option>${row.classification_name}</option>`})
         form += "</select>"
-      
-        form += "<label class='above' for=inv_make>Make</label>"
-        form += `<input id=addMake type='text' placeholder='Min 3 Characters' name='inv_name' required value="<%= locals.inv_make %>">` 
-
-        form += "<label class='above' for=inv_model>Model</label>"
-        form += `<input type='text' placeholder='Min 3 Characters' name='inv_model' required>` 
-        
-        form += "<label class='above' for=inv_year>Year</label>"
-        form += `<input type='number' placeholder='4-digit year' name='inv_year' required>` 
-        
-        form += "<label for=inv_description>Description</label>"
-        form += `<textarea name="inv_description" rows="4"></textarea>`
-
-        form += "<label for=inv_image>Image Path</label>"
-        form += `<input type='text' placeholder='e.g. docs/image.png' name='inv_image' required>` 
-
-        form += "<label for=inv_thumbnail>Thumbnail Path</label>"
-        form += `<input type='text' placeholder='e.g. docs/image_thumbnail.png' name='inv_thumbnail' required>` 
-
-        form += "<label for=inv_price>Price</label>"
-        form += `<input type='text' placeholder='No Commas or Decimals' pattern=^(0|[1-9][0-9]*)$ name='inv_price' required>` 
-
-        form += "<label for=inv_miles>Miles</label>"
-        form += `<input type='text' placeholder='No Commas' name='inv_price' pattern=^(0|[1-9][0-9]*)$ required>` 
-
-        form += "<label for=inv_color>Color</label>"
-        form += `<input type='text' placeholder='No Commas' name='inv_price' required>` 
-
-      form += "</fieldset>"
-
-      form += "<input type='submit' id=invSubmit>"
-    form += "</form>"
-    
     return form
 }
 

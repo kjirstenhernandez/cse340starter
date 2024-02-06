@@ -6,6 +6,20 @@ const pool = require("../database/")
 async function getClassifications(){
   return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
 }
+/* ***************************
+ *  Get Classification ID by Classification Name
+ * ************************** */
+async function getClassificationId(classification_name){
+  const result = await pool.query("SELECT * FROM classification WHERE classification_name = $1",
+  [classification_name]);
+  
+  if (result.rowCount) {
+    return result.rows[0].classification_id;
+  }
+    console.log("Couldn't get classification");
+  return null;
+}
+
 
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
@@ -57,14 +71,14 @@ async function registerClassification(classification_name) {
 /* ***************************
  *  Register New Inventory
  * ************************** */
-async function registerInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color) {
+async function registerInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color, inv_price, classification_id) {
   try {
-      const sql = "INSERT INTO inventory (inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *"
-      return await pool.query(sql, [inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color])
+    const sql = "INSERT INTO inventory (inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *"
+    return await pool.query(sql, [inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id])
   } catch (error) {
       return error.message
   }
 }
 
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId, registerClassification, registerInventory};
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventoryId, registerClassification, registerInventory, getClassificationId};
