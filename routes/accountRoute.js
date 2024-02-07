@@ -9,15 +9,6 @@ const logValidate = require("../utilities/account-validation")
 // Process to build the Login Page 
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
 
-// Verify the Login Data
-router.post(
-    "/login",
-    logValidate.loginRules(),
-    logValidate.checkLoginData, (req, res) => {
-        res.status(200).send('login process')
-      }
-)
-
 // Process to build the Registration Page
 router.get("/register", utilities.handleErrors(accountController.buildRegistration))
 
@@ -29,12 +20,17 @@ router.post(
     utilities.handleErrors(accountController.registerAccount)
   )
 
-// Temporary for Login Process
+// Login Process
 router.post(
     "/login",
-    (req, res) => {
-        res.status(200).send('login process')
-    }
+    regValidate.loginRules(),
+    regValidate.checkLoginData,
+    utilities.handleErrors(accountController.accountLogin)
 )
+
+router.get(
+    "/",
+    utilities.handleErrors(accountController.buildAccount))
+
 
 module.exports = router;
