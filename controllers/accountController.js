@@ -30,10 +30,10 @@ async function buildRegistration(req, res, next){
 }
 
 // Build Account view
-async function buildAccount(req, res, next){
+async function buildManagement(req, res, next){
   let nav = await utilities.getNav()
-  res.render("account/my-account", {
-      title: "My-Account",
+  res.render("account/management", {
+      title: "Management",
       nav,
       errors: null,
   })
@@ -180,4 +180,4 @@ async function accountLogin(req, res) {
   return new Error('Access Forbidden')
  }
 }
-module.exports = {buildLogin, buildRegistration, registerAccount, registerClassification, registerInventory, accountLogin, buildAccount }
+module.exports = {buildLogin, buildRegistration, registerAccount, registerClassification, registerInventory, accountLogin, buildManagement }

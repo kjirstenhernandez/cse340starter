@@ -30,7 +30,8 @@ router.post(
 
 router.get(
     "/",
-    utilities.handleErrors(accountController.buildAccount))
+    utilities.checkLogin,
+    utilities.handleErrors(accountController.buildManagement))
 
 
 module.exports = router;
