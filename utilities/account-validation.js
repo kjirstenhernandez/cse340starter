@@ -105,19 +105,22 @@ validate.addInventoryRules = () => {
     // firstname is required and must be string
     body("inv_make")
     .trim()
-    .isLength({ min: 1 })
+    .isLength({ min: 3 })
     .withMessage("Please provide a make."),
 
   body("inv_model")
     .trim()
-    .isLength({ min: 1 })
+    .isLength({ min: 3 })
     .withMessage("Please provide a valid model."),
   
   body("inv_year")
     .trim()
-    .isLength({ min: 4, max:4 })
-    .isNumeric(no_symbols = true)
-    .withMessage("Please provide a first name."),
+    .custom(async (inv_year) => {
+      if (inv_year.length < 4 ){
+        throw new Error("Year must be four digits.")
+      }})
+    .isNumeric()
+    .withMessage("Year must be numbers only."),
   
   body("inv_description")
     .trim()

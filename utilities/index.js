@@ -112,7 +112,7 @@ Util.buildClassificationForm = async function () {
           "<form id='addClassForm' method='post' action='/inv/addClassification'>" +
             "<label class='above' for='classification_name'>Classification Name</label>" +
             "<span id=rules>Name must be alphabetic characters only</span>" +  
-            "<input type='text' placeholder='e.g. Truck' name='classification_name' required>" +
+            "<input type='text' placeholder='e.g. Truck' name='classification_name' pattern='^[a-zA-Z]*$' required>" +
             "<input type='submit' id=classSubmit>" +
           "</form>" +
         "</fieldset>" +

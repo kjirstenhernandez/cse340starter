@@ -384,7 +384,7 @@ body h1{
 
 #registerSubmit {
   display: block;
-  padding: 0.5 1rem;
+  padding: 0.5rem 1rem;
   margin: 2rem auto;
 }
 
@@ -395,7 +395,7 @@ body h1{
 .management a{ 
   display: block;
   font-family: var(--sans-text);
-  font-size: 1.35 rem;
+  font-size: 1.35rem;
   padding: 1rem;
 }
 
