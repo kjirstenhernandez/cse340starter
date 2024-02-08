@@ -428,7 +428,7 @@ body h1{
 .left{
   display: inline;
 }
-#selectClass{
+#classificationList{
   margin-left: .5rem;
   padding: .5rem;
   border-radius: 5px;
