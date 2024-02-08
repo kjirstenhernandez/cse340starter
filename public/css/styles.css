@@ -474,6 +474,12 @@ body h1{
   text-align: left;
 }
 
+.updateClass p {
+  font-family: var(--sans-text);
+  padding: 1rem;
+  font-size: 1.25rem;
+  color: red;
+}
 
 /* ================================================ */
 /*                   MEDIA QUERIES
