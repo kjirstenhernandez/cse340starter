@@ -19,7 +19,7 @@
 
 <form id='addClassForm' method='post' action='/inv/add-inventory'>
     <fieldset>
-        <label class='left' for='classification_name'>Classification</label>    
+        <label class='above classificationLabel' for='classification_name'>Classification</label>    
         
         <%- form %>
             
@@ -32,7 +32,7 @@
         <label class='above' for=inv_year>Year</label>
         <input type='number' placeholder='4-digit year' name='inv_year' value="<%= locals.inv_year %>" required> 
             
-        <label for=inv_description>Description</label>
+        <label class='above' inv_description>Description</label>
         <textarea name=inv_description rows=4></textarea>
     
         <label for=inv_image>Image Path</label>

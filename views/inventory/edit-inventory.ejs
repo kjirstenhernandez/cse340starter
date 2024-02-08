@@ -17,9 +17,9 @@
 <div class='updateClass'>
 <p>All Fields are Required</p>
 
-<form id='updateClassForm' method='post' action='/inv/update'>
+<form id='addClassForm' class="form editForm" method='post' action='/inv/update'>
     <fieldset>
-        <label class='left' for='classification_name'>Classification</label>
+        <label class='above' for='classification_name'>Classification</label>
         
         <%- form %>
             
@@ -32,8 +32,8 @@
         <label class='above' for=inv_year>Year</label>
         <input type='number' placeholder='4-digit year' name='inv_year' value="<%= locals.inv_year %>" required> 
             
-        <label for=inv_description>Description</label>
-        <textarea name=inv_description rows=4></textarea>
+        <label class='above' for=inv_description>Description</label>
+        <textarea name=inv_description rows=4><%= locals.inv_description %></textarea>
     
         <label for=inv_image>Image Path</label>
         <input type='text' placeholder='e.g. docs/image.png' name='inv_image' value="<%= locals.inv_image %>" required> 

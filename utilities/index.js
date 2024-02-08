@@ -125,8 +125,7 @@ Util.buildClassificationForm = async function () {
  * Build addInventory Form
  **************************************** */
 Util.buildClassificationList = async function (data) {
-  let form = "<label for='classification_id'>Select Classification</label>"
-        form += "<select id='classificationList' name='classification_id'>"
+  let form = "<select id='classificationList' name='classification_id'>"
           form += "<option>Select One</option>"
           data.rows.forEach((row) => {
           form += `<option value='${row.classification_id}'`
