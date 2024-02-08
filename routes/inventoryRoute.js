@@ -39,9 +39,12 @@ router.post(
     utilities.handleErrors(accountController.registerInventory)
   )
 
+  // Process data to JSON
 router.get(
     "/getInventory/:classification_id",
     utilities.handleErrors(invController.getInventoryJSON))
 
+// Route to build Edit Inventory page
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
 
 module.exports = router;

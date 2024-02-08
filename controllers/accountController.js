@@ -121,7 +121,7 @@ async function registerClassification(req, res) {
 // Process Add-Inventory Registration
 async function registerInventory(req, res) {
   let data = await invModel.getClassifications()
-  const form = await utilities.buildInventoryForm(data)
+  const form = await utilities.buildClassificationList(data)
   let nav = await utilities.getNav()
   const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color, inv_price, classification_name } = req.body
   const classification_id = await invModel.getClassificationId(classification_name)

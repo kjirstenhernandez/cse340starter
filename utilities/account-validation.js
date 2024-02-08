@@ -230,7 +230,7 @@ validate.checkLoginData = async (req, res, next) => {
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
         let data = await invModel.getClassifications()
-        const form = await utilities.buildInventoryForm(data)
+        const form = await utilities.buildClassificationList(data)
         res.render("inventory/add-inventory", {
             errors,
             title: "Add Inventory",

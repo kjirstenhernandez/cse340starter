@@ -14,12 +14,12 @@
     </ul>
     <% } %>
 
-<div class='addClass'>
+<div class='updateClass'>
 <p>All Fields are Required</p>
 
-<form id='addClassForm' method='post' action='/inv/add-inventory'>
+<form id='updateClassForm' method='post' action='/inv/update'>
     <fieldset>
-        <label class='left' for='classification_name'>Classification</label>    
+        <label class='left' for='classification_name'>Classification</label>
         
         <%- form %>
             
@@ -52,6 +52,6 @@
     
     </fieldset>
     
-    <input type='submit' id=invSubmit>
+    <input type='submit' id=invSubmit value="Update Vehicle">
 </form>
 <%-  %>

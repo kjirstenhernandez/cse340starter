@@ -112,7 +112,7 @@ Util.buildClassificationForm = async function () {
           "<form id='addClassForm' method='post' action='/inv/addClassification'>" +
             "<label class='above' for='classification_name'>Classification Name</label>" +
             "<span id=rules>Name must be alphabetic characters only</span>" +  
-            "<input type='text' placeholder='e.g. Truck' pattern=/^[a-zA-Z]+$/ name='classification_name' required>" +
+            "<input type='text' placeholder='e.g. Truck' name='classification_name' required>" +
             "<input type='submit' id=classSubmit>" +
           "</form>" +
         "</fieldset>" +
@@ -124,7 +124,7 @@ Util.buildClassificationForm = async function () {
 /* ****************************************
  * Build addInventory Form
  **************************************** */
-Util.buildInventoryForm = async function (data) {
+Util.buildClassificationList = async function (data) {
   let form = "<label for='classification_id'>Select Classification</label>"
         form += "<select id='classificationList' name='classification_id'>"
           form += "<option>Select One</option>"
