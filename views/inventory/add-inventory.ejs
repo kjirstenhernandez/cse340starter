@@ -24,10 +24,10 @@
         <%- form %>
             
         <label class='above' for=inv_make>Make</label>
-        <input id=addMake type='text' placeholder='Min 3 Characters' name='inv_make' pattern='{3,}'required value="<%= locals.inv_make %>"> 
+        <input id=addMake type='text' placeholder='Min 3 Characters' name='inv_make' pattern='[a-zA-Z]{3,}'required value="<%= locals.inv_make %>"> 
     
         <label class='above' for=inv_model>Model</label>
-        <input type='text' placeholder='Min 3 Characters' name='inv_model' pattern='{3,}' value="<%= locals.inv_model %>" required> 
+        <input type='text' placeholder='Min 3 Characters' name='inv_model' pattern='[a-zA-Z0-9]{3,}' value="<%= locals.inv_model %>" required> 
             
         <label class='above' for=inv_year>Year</label>
         <input type='text' placeholder='4-digit year' name='inv_year' pattern='[0-9]{4}'value="<%= locals.inv_year %>" required> 

@@ -6,23 +6,31 @@ const invController = require("../controllers/invController")
 const invValidate = require("../utilities/inventory-validation")
 const accountController = require("../controllers/accountController")
 
+// Router for server error messages
+router.get("/throwerror", utilities.handleErrors(invController.buildError));
+
 // Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassificationId);
+router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
 
 // Route to build inventory with single view
-router.get("/detail/:inventoryId", invController.buildVehicleDetails);
+router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildVehicleDetails));
 
 // Route to build management page
-router.get("/", invController.buildManagement);
+router.get("/", utilities.handleErrors(invController.buildManagement));
 
 // Route to build addClassification page
-router.get("/addClassification", invController.buildAddClassification);
+router.get("/addClassification", utilities.handleErrors(invController.buildAddClassification));
 
 // Route to build addClassification page
-router.get("/add-inventory", invController.buildAddInventory);
+router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
 
-// Router for server error messages
-router.get("/throwerror", invController.buildError);
+// Processing data for Add Inventory page
+router.post(
+  "/add-inventory",
+  invValidate.addInventoryRules(),
+  invValidate.checkInventoryData,
+  utilities.handleErrors(invController.registerInventory)
+)
 
 // Processing data for Add Classification page
 router.post(
@@ -30,13 +38,6 @@ router.post(
     invValidate.addClassificationRules(),
     invValidate.checkClassificationData,
     utilities.handleErrors(invController.registerClassification)
-  )
-// Processing data for Add Inventory page
-router.post(
-    "/add-inventory",
-    invValidate.addInventoryRules(),
-    invValidate.checkInventoryData,
-    utilities.handleErrors(invController.registerInventory)
   )
 
   // Process data to JSON
@@ -52,5 +53,12 @@ router.post("/update/",
   invValidate.newInventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory))
+
+// Process to Delete Classification
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteInventoryView)),
+
+
+router.post("/delete", utilities.handleErrors(invController.deleteInventory))
+
 
 module.exports = router;

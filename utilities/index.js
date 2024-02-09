@@ -91,7 +91,8 @@ Util.buildSingleGrid = async function(data){
  **************************************** */
 Util.buildLinks = async function(classificationLink, vehicleLink) {
   let grid
-  grid = "<div class=management>"
+  grid = "<div class=
+  ment>"
   grid+= `<a href="${classificationLink}"> Add New Classification</a>`
   grid+= `<a href="${vehicleLink}"> Add New Vehicle</a>`
   grid += "</div>"
@@ -112,7 +113,7 @@ Util.buildClassificationForm = async function () {
           "<form id='addClassForm' method='post' action='/inv/addClassification'>" +
             "<label class='above' for='classification_name'>Classification Name</label>" +
             "<span id=rules>Name must be alphabetic characters only</span>" +  
-            "<input type='text' placeholder='e.g. Truck' name='classification_name' pattern='^[a-zA-Z]*$' required>" +
+            `<input type='text' id=newClassName placeholder='e.g. Truck' name='classification_name' pattern='^[a-zA-Z]*$' value=${'<%= locals.inv_miles %>'} required>` +
             "<input type='submit' id=classSubmit>" +
           "</form>" +
         "</fieldset>" +

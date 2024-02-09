@@ -171,7 +171,7 @@ invCont.updateInventory = async function (req, res, next) {
         "notice",
         `Congratulations, ${inv_make} ${inv_model} has been updated.`
       )
-      res.status(201).render("/inv/")
+      res.status(201).render("inventory/management")
     } else {
       const classificationSelect = await utilities.buildClassificationList(classification_id)
       req.flash("notice", "Sorry, the update failed.")
@@ -194,7 +194,6 @@ invCont.updateInventory = async function (req, res, next) {
       })
     }
   }
-  
 
 /* *****************************************
  *  Process to Register New Classification
@@ -232,7 +231,7 @@ invCont.registerClassification = async function (req, res) {
 
   
 /* *****************************************
- *  Process to Process New Inventory
+ *  Process New Inventory
  * ***************************************** */ 
 invCont.registerInventory = async function (req, res) {
   const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color, inv_price, classification_id} = req.body
@@ -262,6 +261,107 @@ invCont.registerInventory = async function (req, res) {
     })
   }
 }
+
+
+/* ***************************
+*  Build Delete Page
+* ************************** */
+invCont.buildDeleteInventoryView = async function (req,res,next) {
+  const inv_id= parseInt(req.params.inv_id)
+  let nav = await utilities.getNav()
+  let data = await invModel.getInventoryByInventoryId(inv_id)
+  data = data[0]
+  let makeModel = `${data.inv_make} ${data.inv_model}`
+  res.render("./inventory/delete-confirm", {
+    title: `Delete ${makeModel}`,
+    nav,
+    errors: null,
+    inv_id: data.inv_id,
+    inv_make: data.inv_make,
+    inv_model: data.inv_model,
+    inv_year: data.inv_year,
+    inv_price: data.inv_price,
+}
+  )}
+
+/* **********************************
+ *  Process to Update Inventory Data
+ * ********************************** */
+invCont.updateInventory = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body
+  const updateResult = await invModel.updateInventory(
+    inv_id,  
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id
+  )
+  
+    if (updateResult) {
+      req.flash(
+        "notice",
+        `Congratulations, ${inv_make} ${inv_model} has been updated.`
+      )
+      res.status(201).render("inventory/management")
+    } else {
+      const classificationSelect = await utilities.buildClassificationList(classification_id)
+      req.flash("notice", "Sorry, the update failed.")
+      res.status(501).render("inventory/edit-inventory", {
+        title: "Update Inventory",
+        nav,
+        form: classificationSelect,
+        errors: null,
+        inv_id,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id
+      })
+    }
+  }
+
+
+/* **********************************
+ *  Process to Delete Inventory Data
+ * ********************************** */
+invCont.deleteInventory = async function (req, res, next) {
+  const inv_id = parseInt(req.body.inv_id)
+  const deleteResult = await invModel.deleteInventory(inv_id)
+  
+  if (deleteResult) {
+    req.flash("notice", `${inv_make} ${inv_model} has been deleted.`)
+    res.redirect("/inv/")
+  } else {
+    req.flash("notice", "Sorry, the delete failed.")
+    res.redirect("inv/delete/{inv_id}")
+    }
+  }
+  
 
 
 module.exports = invCont

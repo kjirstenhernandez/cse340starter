@@ -7,14 +7,16 @@
 <% messages() %>
 
 <%- grid %>
+<div id="manageInventory">
+  <h2>Manage Inventory</h2>
 
-<h2>Manage Inventory</h2>
+  <p>Select a classification from the list to see the items belonging to the classification</p>
 
-<p>Select a classification from the list to see the items belonging to the classification</p>
+  <%- classificationSelect  %>
 
-<%- classificationSelect  %>
+  <table id="inventoryDisplay"></table>
 
-<table id="inventoryDisplay"></table>
+</div>
 
 <noscript>JavaScript must be enabled to use this page.</noscript>
 

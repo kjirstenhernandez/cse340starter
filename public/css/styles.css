@@ -405,6 +405,31 @@ body h1{
   text-align: center;
 }
 
+#manageInventory {
+  background-color: #247ABD;
+  margin: 0 auto;
+  font-family: var(--sans-text);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  max-width: 80%;
+  padding: 1rem 0;
+}
+
+#manageInventory select{
+  margin: 0 auto;
+}
+
+#inventoryDisplay{
+   margin: 0 auto;
+   padding: 1rem;
+  a {
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+  }
+}
+
 /* ================================================ */
 /*         ADD CLASSIFICATION/INVENTORY PAGES 
 /* ================================================ */
@@ -419,7 +444,7 @@ body h1{
   color: white;
 }
 
-#updateForm {
+#addClassForm {
   font-weight: 500;
   font-size: 1.25rem;
 }
@@ -436,7 +461,7 @@ body h1{
   font-family: var(--sans-text2);
 }
 
-#updateForm input[type=text], input[type=number]{
+#addClassForm, #updateForm input[type=text], input[type=number], #newClassName{
   display: inline;
   width: 100%;
   margin-bottom: 20px;
@@ -445,7 +470,7 @@ body h1{
   border: none;
 }
 
-#updateForm textarea {
+#addClassForm, #updateForm textarea {
   width: 100%;
   border-radius: 5px;
 }
@@ -468,6 +493,19 @@ body h1{
 .editForm {
   max-width: 40rem;
 }
+
+#rules {
+  font-style: italic;
+  font-size: 0.7rem;
+}
+
+/* #newClassName{
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-top: 0.35rem;
+} */
 
 #classificationList {
   display: block;
