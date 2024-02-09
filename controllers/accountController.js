@@ -85,73 +85,6 @@ async function registerAccount(req, res) {
   }
 }
 
-// Process AddClassification Registration
-async function registerClassification(req, res) {
-  const form = await utilities.buildClassificationForm()
-  let nav = await utilities.getNav()
-  const { classification_name } = req.body
-
-
-  const regResult = await invModel.registerClassification(
-    classification_name
-  )
-
-  if (regResult) {
-    req.flash(
-      "notice",
-      `Congratulations, you\'ve registered the classification ${classification_name}.`
-    )
-    res.status(201).render("inventory/addClassification", {
-      title: "Add Classification",
-      nav,
-      form,
-      errors: null,
-    })
-  } else {
-    req.flash("notice", "Sorry, the registration failed.")
-    res.status(501).render("inventory/addClassification", {
-      title: "Add Classification",
-      nav,
-      form,
-      errors: null, //added later
-    })
-  }
-}
-
-// Process Add-Inventory Registration
-async function registerInventory(req, res) {
-  let data = await invModel.getClassifications()
-  const form = await utilities.buildClassificationList(data)
-  let nav = await utilities.getNav()
-  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color, inv_price, classification_name } = req.body
-  const classification_id = await invModel.getClassificationId(classification_name)
-  console.log(classification_id);
-  const regResult = await invModel.registerInventory(
-    inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color, inv_price, classification_id
-  )
-
-  if (regResult) {
-    req.flash(
-      "notice",
-      `Congratulations, you\'ve registered a new vehicle.`
-    )
-    res.status(201).render("inventory/add-inventory", {
-      title: "Add Inventory",
-      nav,
-      form,
-      errors: null,
-    })
-  } else {
-    req.flash("notice", "Sorry, the registration failed.")
-    res.status(501).render("inventory/add-inventory", {
-      title: "Add Inventory",
-      nav,
-      form,
-      errors: null,
-    })
-  }
-}
-
 /* ****************************************
  *  Process login request
  * ************************************ */
@@ -180,4 +113,4 @@ async function accountLogin(req, res) {
   return new Error('Access Forbidden')
  }
 }
-module.exports = {buildLogin, buildRegistration, registerAccount, registerClassification, registerInventory, accountLogin, buildManagement }
+module.exports = {buildLogin, buildRegistration, registerAccount, accountLogin, buildManagement } //registerInventory, registerClassification

@@ -29,14 +29,14 @@ router.post(
     "/addClassification",
     invValidate.addClassificationRules(),
     invValidate.checkClassificationData,
-    utilities.handleErrors(accountController.registerClassification)
+    utilities.handleErrors(invController.registerClassification)
   )
 // Processing data for Add Inventory page
 router.post(
     "/add-inventory",
     invValidate.addInventoryRules(),
     invValidate.checkInventoryData,
-    utilities.handleErrors(accountController.registerInventory)
+    utilities.handleErrors(invController.registerInventory)
   )
 
   // Process data to JSON
@@ -48,6 +48,9 @@ router.get(
 router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
 
 // Process Inventory update to DB
-router.post("/update/", utilities.handleErrors(invController.updateInventory))
+router.post("/update/", 
+  invValidate.newInventoryRules(),
+  invValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory))
 
 module.exports = router;

@@ -49,8 +49,7 @@ invCont.buildError = function (req, res, next) {
 invCont.buildManagement = async function (req,res,next) {
   const grid = await utilities.buildLinks("./addClassification", "./add-inventory")
   let nav = await utilities.getNav()
-  let data = await invModel.getClassifications()
-  const classificationSelect = await Util.buildClassificationList(data)
+  const classificationSelect = await Util.buildClassificationList()
   res.render("./inventory/management", {
     title: "Vehicle Management",
     nav,
@@ -80,7 +79,7 @@ invCont.buildAddClassification = async function (req,res,next) {
 
 invCont.buildAddInventory = async function (req,res,next) {
   let data = await invModel.getClassifications()
-  const form = await utilities.buildClassificationList(data)
+  const form = await utilities.buildClassificationList()
   let nav = await utilities.getNav()
   res.render("./inventory/add-inventory", {
     title: "Add Inventory",
@@ -114,7 +113,7 @@ invCont.buildEditInventory = async function (req,res,next) {
   data = data[0]
   console.table(data)
   let makeModel = `${data.inv_make} ${data.inv_model}`
-  const classificationSelect = await utilities.buildClassificationList(classList)
+  const classificationSelect = await utilities.buildClassificationList()
   res.render("./inventory/edit-inventory", {
     title: `Edit ${makeModel}`,
     nav,
@@ -133,5 +132,136 @@ invCont.buildEditInventory = async function (req,res,next) {
     classification_id: data.classification_id,
 }
   )}
+
+
+/* **********************************
+ *  Process to Update Inventory Data
+ * ********************************** */
+invCont.updateInventory = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body
+  const updateResult = await invModel.updateInventory(
+    inv_id,  
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id
+  )
+  
+    if (updateResult) {
+      req.flash(
+        "notice",
+        `Congratulations, ${inv_make} ${inv_model} has been updated.`
+      )
+      res.status(201).render("/inv/")
+    } else {
+      const classificationSelect = await utilities.buildClassificationList(classification_id)
+      req.flash("notice", "Sorry, the update failed.")
+      res.status(501).render("inventory/edit-inventory", {
+        title: "Update Inventory",
+        nav,
+        form: classificationSelect,
+        errors: null,
+        inv_id,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id
+      })
+    }
+  }
+  
+
+/* *****************************************
+ *  Process to Register New Classification
+ * ***************************************** */
+  // Process AddClassification Registration
+invCont.registerClassification = async function (req, res) {
+  const form = await utilities.buildClassificationForm()
+  let nav = await utilities.getNav()
+  const { classification_name } = req.body
+  const regResult = await invModel.registerClassification(
+    classification_name
+  )
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you\'ve registered the classification ${classification_name}.`
+    )
+    res.status(201).render("inventory/addClassification", {
+      title: "Add Classification",
+      nav,
+      form,
+      errors: null,
+    })
+  } else {
+    req.flash("notice", "Sorry, the registration failed.")
+    res.status(501).render("inventory/addClassification", {
+      title: "Add Classification",
+      nav,
+      form,
+      errors: null, //added later
+    })
+  }
+}
+
+  
+/* *****************************************
+ *  Process to Process New Inventory
+ * ***************************************** */ 
+invCont.registerInventory = async function (req, res) {
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color, inv_price, classification_id} = req.body
+  const regResult = await invModel.registerInventory(
+    inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_miles, inv_color, inv_price, classification_id)
+  let nav = await utilities.getNav()
+  const form = await utilities.buildClassificationList()
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you\'ve registered a new vehicle.`
+    )
+    res.status(201).render("inventory/add-inventory", {
+      title: "Add Inventory",
+      nav,
+      form,
+      errors: null,
+    })
+  } else {
+    req.flash("notice", "Sorry, the registration failed.")
+    res.status(501).render("inventory/add-inventory", {
+      title: "Add Inventory",
+      nav,
+      form,
+      errors: null,
+    })
+  }
+}
+
 
 module.exports = invCont

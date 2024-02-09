@@ -17,7 +17,7 @@
 <div class='updateClass'>
 <p>All Fields are Required</p>
 
-<form id='addClassForm' class="form editForm" method='post' action='/inv/update'>
+<form id='updateForm' class="form editForm" method='post' action='/inv/update'>
     <fieldset>
         <label class='above' for='classification_name'>Classification</label>
         
@@ -52,9 +52,11 @@
     
     </fieldset>
     
-    <input type='submit' id=invSubmit value="Update Vehicle">
+    <input type='submit' id=invSubmit value="Update Vehicle" disabled>
     <input type="hidden" name="inv_id"
     <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
     <% } %>>
     
 </form>
+
+<script src="../../js/inv-update.js"></script>
