@@ -420,14 +420,15 @@ body h1{
   margin: 0 auto;
 }
 
-#inventoryDisplay{
+#inventoryDisplay {
    margin: 0 auto;
    padding: 1rem;
-  a {
-    text-decoration: none;
-    color: white;
-    padding: 1rem;
-  }
+}
+
+#inventoryDisplay a {
+  text-decoration: none;
+  color: white;
+  padding: 1rem;
 }
 
 /* ================================================ */
@@ -461,24 +462,24 @@ body h1{
   font-family: var(--sans-text2);
 }
 
-#addClassForm, #updateForm, #deleteForm, .generalForm {
+#addClassForm, #updateForm, #deleteForm, .generalForm > input[type=text], input[type=number], #newClassName, input[type=email], input[type=password]{
 
-  input[type=text], input[type=number], #newClassName, input[type=email], input[type=password]{
+  /* input[type=text], input[type=number], #newClassName, input[type=email], input[type=password]{ */
   display: inline;
   width: 100%;
   margin-bottom: 20px;
   padding: .5rem;
   border-radius: 5px;
   border: none;
-}}
+}
 
-#addClassForm, #updateForm, #deleteForm, .generalForm {
-
- textarea {
+#addClassForm, #updateForm, #deleteForm, .generalForm > textarea {
+/* 
+ textarea { */
   font-family: var(--sans-text2);
   width: 100%;
   border-radius: 5px;
-}}
+}
 
 #classSubmit, #invSubmit, .submitButton {
   display: block;
@@ -526,10 +527,10 @@ body h1{
 .invManage{
   text-align: center;
   font-family: var(--sans-text);
+}
 
-    h2 {
-      font-weight: 400;
-    }
+.invManage h2 {
+  font-weight: 400;
 }
 
 .manageButton{
@@ -540,12 +541,11 @@ body h1{
   margin: 0 auto 1rem;
   padding: 1rem;
   box-shadow: 3px 3px 3px #24282e4f;
+}
 
-    a {
-      text-decoration: none;
-      color: white;
-    }
-
+.manageButton a {
+  text-decoration: none;
+  color: white;
 }
 
 #invHead{
