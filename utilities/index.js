@@ -169,6 +169,21 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
+ /* ****************************************
+ *    Build Account Grid (per Status)
+ * ***************************************** */
+ Util.createAccountGrid = (loggedIn, accountType) => {
+  let grid
+  if (loggedIn && (accountType === "Admin" || accountType === "Employee")){
+    grid = '<div class="manageButton">'
+    grid += "<a href='../../inv/' >Edit Inventory</a>"
+    grid += '</div>'}
+  else {
+    grid += ''
+  }
+  return grid
+  }
+
 /* ****************************************
  *  Check Login
  * ************************************ */

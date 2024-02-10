@@ -31,11 +31,15 @@ router.get("/logout",
     utilities.checkLogin,
     utilities.handleErrors(accountController.accountLogout))
 
-
 router.get(
     "/",
     utilities.checkLogin,
     utilities.handleErrors(accountController.buildManagement))
+
+// Edit Account
+router.get("/update/:account_id", 
+    utilities.checkLogin,
+    utilities.handleErrors(accountController.editAccount))
 
 
 module.exports = router;

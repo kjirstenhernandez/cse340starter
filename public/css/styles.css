@@ -525,6 +525,39 @@ body h1{
 }
 
 /* ================================================ */
+/*       ACCOUNT MANAGMENT
+/* ================================================ */
+
+.invManage{
+  text-align: center;
+  font-family: var(--sans-text);
+
+    h2 {
+      font-weight: 400;
+    }
+}
+
+.manageButton{
+  background-color: #247ABD;
+  border-radius: 5px;
+  font-family: var(--sans-text2);
+  width: fit-content;
+  margin: 0 auto 1rem;
+  padding: 1rem;
+  box-shadow: 3px 3px 3px #24282e4f;
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+}
+
+#invHead{
+  font-family: var(--serif-text);
+}
+
+/* ================================================ */
 /*                   MEDIA QUERIES
 /* ================================================ */
 /* ======= MEDIUM MEDIA SCREENS ======== */

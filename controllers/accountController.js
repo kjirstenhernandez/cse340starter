@@ -1,5 +1,4 @@
 
-
 // Required Elements
 const utilities = require("../utilities/")
 const accountModel = require("../models/account-model.js")
@@ -8,6 +7,9 @@ const jwt = require("jsonwebtoken")
             require("dotenv").config()
 const bcrypt = require("bcryptjs")
 
+/* ************************
+        BUILD VIEWS
+**************************/
 
 //Builds Login View
 async function buildLogin(req, res, next) {
@@ -29,15 +31,24 @@ async function buildRegistration(req, res, next){
     })
 }
 
-// Build Account view
-async function buildManagement(req, res, next){
+// Build Account Management Page
+async function buildManagement(req, res){
   let nav = await utilities.getNav()
-  res.render("account/management", {
-      title: "Management",
+  let loginStatus = res.locals.loggedin
+  let accountType = res.locals.accountData.account_type
+  let accountStatus = utilities.createAccountGrid(loginStatus, accountType)
+  res.render("./account/management", {
+      title: "Account Management",
       nav,
+      accountType,
+      accountStatus,
       errors: null,
   })
 }
+
+/* ************************
+        PROCESSES
+**************************/
 
 // Process Registration
 async function registerAccount(req, res) {
@@ -85,9 +96,7 @@ async function registerAccount(req, res) {
   }
 }
 
-/* ****************************************
- *  Process login request
- * ************************************ */
+// Process Login Request
 async function accountLogin(req, res) {
  let nav = await utilities.getNav()
  const { account_email, account_password } = req.body
@@ -115,13 +124,13 @@ async function accountLogin(req, res) {
 }
 
 
-/* ****************************************
- *  Process logout request
- * ************************************ */
+// Process Logout Request
 async function accountLogout(req, res) {
   res.clearCookie("jwt")
   res.locals.loggedin = false;
   res.redirect("/login")
 }
+
+
 
 module.exports = {buildLogin, buildRegistration, registerAccount, accountLogin, buildManagement, accountLogout } //registerInventory, registerClassification
