@@ -51,5 +51,8 @@ router.post("/change",
     regValidate.checkUpdateData, 
     utilities.handleErrors(accountController.updatePassword))
 
+router.get("/logout",
+    utilities.checkLogin,
+    utilities.handleErrors(accountController.accountLogout))
 
 module.exports = router;

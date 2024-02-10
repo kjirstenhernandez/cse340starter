@@ -136,12 +136,10 @@ async function accountLogin(req, res) {
  }
 }
 
-
 // Process Logout Request
 async function accountLogout(req, res) {
   res.clearCookie("jwt")
-  res.locals.loggedin = false;
-  res.redirect("/login")
+  res.redirect("/")
 }
 
 //  Process Update Account Data
