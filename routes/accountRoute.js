@@ -20,13 +20,17 @@ router.post(
     utilities.handleErrors(accountController.registerAccount)
   )
 
-// Login Process
+// Login/Logout Process
 router.post(
     "/login",
-    regValidate.loginRules(),
-    regValidate.checkLoginData,
-    utilities.handleErrors(accountController.accountLogin)
-)
+    logValidate.loginRules(),
+    logValidate.checkLoginData,
+    utilities.handleErrors(accountController.accountLogin))
+
+router.get("/logout", 
+    utilities.checkLogin,
+    utilities.handleErrors(accountController.accountLogout))
+
 
 router.get(
     "/",

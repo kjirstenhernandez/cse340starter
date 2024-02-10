@@ -352,9 +352,9 @@ invCont.updateInventory = async function (req, res, next) {
 invCont.deleteInventory = async function (req, res, next) {
   const inv_id = parseInt(req.body.inv_id)
   const deleteResult = await invModel.deleteInventory(inv_id)
-  
+  console.table(deleteResult)
   if (deleteResult) {
-    req.flash("notice", `${inv_make} ${inv_model} has been deleted.`)
+    req.flash("notice", `Successfully deleted.`)
     res.redirect("/inv/")
   } else {
     req.flash("notice", "Sorry, the delete failed.")
