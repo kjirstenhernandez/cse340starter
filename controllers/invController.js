@@ -284,66 +284,6 @@ invCont.buildDeleteInventoryView = async function (req,res,next) {
 }
   )}
 
-/* **********************************
- *  Process to Update Inventory Data
- * ********************************** */
-invCont.updateInventory = async function (req, res, next) {
-  let nav = await utilities.getNav()
-  const {
-    inv_id,
-    inv_make,
-    inv_model,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_year,
-    inv_miles,
-    inv_color,
-    classification_id,
-  } = req.body
-  const updateResult = await invModel.updateInventory(
-    inv_id,  
-    inv_make,
-    inv_model,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_year,
-    inv_miles,
-    inv_color,
-    classification_id
-  )
-  
-    if (updateResult) {
-      req.flash(
-        "notice",
-        `Congratulations, ${inv_make} ${inv_model} has been updated.`
-      )
-      res.status(201).render("inventory/management")
-    } else {
-      const classificationSelect = await utilities.buildClassificationList(classification_id)
-      req.flash("notice", "Sorry, the update failed.")
-      res.status(501).render("inventory/edit-inventory", {
-        title: "Update Inventory",
-        nav,
-        form: classificationSelect,
-        errors: null,
-        inv_id,
-        inv_make,
-        inv_model,
-        inv_year,
-        inv_description,
-        inv_image,
-        inv_thumbnail,
-        inv_price,
-        inv_miles,
-        inv_color,
-        classification_id
-      })
-    }
-  }
 
 
 /* **********************************

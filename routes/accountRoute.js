@@ -37,9 +37,19 @@ router.get(
     utilities.handleErrors(accountController.buildManagement))
 
 // Edit Account
-router.get("/update/:account_id", 
+router.get("/update/", 
     utilities.checkLogin,
-    utilities.handleErrors(accountController.editAccount))
+    utilities.handleErrors(accountController.buildAccountUpdate))
+
+router.post("/update/", 
+    regValidate.updateAccountRules(),
+    regValidate.checkUpdateData,
+    utilities.handleErrors(accountController.updateAccount))
+
+router.post("/change",
+    regValidate.updatePasswordRules(), 
+    regValidate.checkUpdateData, 
+    utilities.handleErrors(accountController.updatePassword))
 
 
 module.exports = router;
