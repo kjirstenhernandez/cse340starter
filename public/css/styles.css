@@ -575,8 +575,9 @@ body h1{
 /*              DELETE CLASSIFICATION
 /* ================================================ */
 
-#deleteClassSelect {
+#deleteClassSelect, .deleteClass {
   max-width: 50em;
+  margin: 0 auto;
   padding: 1rem;
 }
 
