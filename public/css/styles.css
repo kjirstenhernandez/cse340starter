@@ -450,9 +450,17 @@ body h1{
   font-size: 1.25rem;
 }
 
+#acctUpdateForm {
+  max-width: 50rem;
+}
+
+#updateForm {
+  max-width: 50rem;
+}
 .above{
   display: block;
   text-align: left;
+  padding-left: 10px;
 }
 
 #classificationList{
@@ -462,18 +470,16 @@ body h1{
   font-family: var(--sans-text2);
 }
 
-#addClassForm, #updateForm, #deleteForm, .generalForm > input[type=text], input[type=number], #newClassName, input[type=email], input[type=password]{
-
-  /* input[type=text], input[type=number], #newClassName, input[type=email], input[type=password]{ */
+.form input[type=text], input[type=number], #newClassName, input[type=email], input[type=password]{
   display: inline;
-  width: 100%;
+  width: 95%;
   margin-bottom: 20px;
   padding: .5rem;
   border-radius: 5px;
   border: none;
 }
 
-#addClassForm, #updateForm, #deleteForm, .generalForm > textarea {
+.form textarea {
 /* 
  textarea { */
   font-family: var(--sans-text2);
@@ -564,6 +570,28 @@ body h1{
     max-width: 80%;
     padding: 1rem;
   }
+
+  /* ================================================ */
+/*              DELETE CLASSIFICATION
+/* ================================================ */
+
+#deleteClassSelect {
+  max-width: 50em;
+  padding: 1rem;
+}
+
+#deleteClassSelect select {
+  margin: 0 auto
+}
+
+#deletebutton a{
+  background-color: var(--light-color);
+  color:var(--dark-color);
+  text-decoration: none;
+  padding: .65rem;
+  margin-bottom: 1em; 
+  border-radius: 10px;
+}
 
 /* ================================================ */
 /*                   MEDIA QUERIES

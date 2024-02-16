@@ -89,11 +89,12 @@ Util.buildSingleGrid = async function(data){
 /* ****************************************
  * Build Management View
  **************************************** */
-Util.buildLinks = async function(classificationLink, vehicleLink) {
+Util.buildLinks = async function(classificationLink, vehicleLink, deleteLink) {
   let grid
   grid = "<div class=management>"
   grid+= `<a href="${classificationLink}"> Add New Classification</a>`
   grid+= `<a href="${vehicleLink}"> Add New Vehicle</a>`
+  grid+= `<a href="${deleteLink}">Delete Classification</a>`
   grid += "</div>"
 
   return grid
@@ -109,7 +110,7 @@ Util.buildClassificationForm = async function () {
     "<div class='addClass'>" +
         "<p>Field is Required</p>" +
         "<fieldset>" +
-          "<form id='addClassForm' method='post' action='/inv/addClassification'>" +
+          "<form id='addClassForm' class='form' method='post' action='/inv/addClassification'>" +
             "<label class='above' for='classification_name'>Classification Name</label>" +
             "<span id=rules>Name must be alphabetic characters only</span>" +  
             "<input type='text' id=newClassName placeholder='e.g. Truck' name='classification_name' pattern='^[a-zA-Z]*$' required>" +
@@ -135,6 +136,22 @@ Util.buildClassificationList = async function (selectClassId) {
           }
           form+= `>${row.classification_name}</option>`})
         form += "</select>"
+    return form
+}
+/* ****************************************
+ * Build deleteClass Confirm Form
+ **************************************** */
+Util.buildDeleteClassForm = async function (classification_id, classification_name) {
+  let form = `
+    <form id='deleteForm' class="form" method='post' action='/inv/deleteClass'>
+      <fieldset>
+        <p>Confirm Deletion: Changes are Permanent</p>    
+        <label class='above' for=classification_name>Make</label>
+        <input readonly id=addMake type='text' name='classification_name' required value="${classification_name}"> 
+        <input type="hidden" name="classification_id" value="${classification_id}">
+        <input type='submit' id=classSubmit value="Delete Classification">
+      </fieldset>
+    </form>`
     return form
 }
 

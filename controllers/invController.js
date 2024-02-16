@@ -47,13 +47,14 @@ invCont.buildError = function (req, res, next) {
  *  Build Management page
  * ************************** */
 invCont.buildManagement = async function (req,res,next) {
-  const grid = await utilities.buildLinks("./addClassification", "./add-inventory")
+  const grid = await utilities.buildLinks("./addClassification", "./add-inventory", "./deleteClassification")
   let nav = await utilities.getNav()
   const classificationSelect = await Util.buildClassificationList()
   res.render("./inventory/management", {
     title: "Vehicle Management",
     nav,
     grid,
+    errors: null,
     classificationSelect,
 }
   )}
@@ -67,6 +68,21 @@ invCont.buildAddClassification = async function (req,res,next) {
   let nav = await utilities.getNav()
   res.render("./inventory/addClassification", {
     title: "Add a Classification",
+    nav,
+    form,
+    errors: null,
+}
+  )}
+/* *******************************
+ *  Build deleteClassification Page
+ * ******************************* */
+
+invCont.buildDeleteClassification = async function (req,res,next) {
+  let data = await invModel.getClassifications()
+  const form = await utilities.buildClassificationList()
+  let nav = await utilities.getNav()
+  res.render("./inventory/deleteClassification", {
+    title: "Delete a Classification",
     nav,
     form,
     errors: null,
@@ -111,7 +127,6 @@ invCont.buildEditInventory = async function (req,res,next) {
   let nav = await utilities.getNav()
   let data = await invModel.getInventoryByInventoryId(inventoryId)
   data = data[0]
-  console.table(data)
   let makeModel = `${data.inv_make} ${data.inv_model}`
   const classificationSelect = await utilities.buildClassificationList()
   res.render("./inventory/edit-inventory", {
@@ -264,7 +279,7 @@ invCont.registerInventory = async function (req, res) {
 
 
 /* ***************************
-*  Build Delete Page
+*  Build Inv Delete Page
 * ************************** */
 invCont.buildDeleteInventoryView = async function (req,res,next) {
   const inv_id= parseInt(req.params.inv_id)
@@ -281,6 +296,22 @@ invCont.buildDeleteInventoryView = async function (req,res,next) {
     inv_model: data.inv_model,
     inv_year: data.inv_year,
     inv_price: data.inv_price,
+}
+  )}
+
+  /* ***************************
+*  Build Class Delete Page (confirm)
+* ************************** */
+invCont.buildDeleteClassificationView = async function (req,res,next) {
+  const classification_id= parseInt(req.params.classification_id)
+  let nav = await utilities.getNav()
+  let classification_name = await invModel.getClassificationName(classification_id)
+  let form = await utilities.buildDeleteClassForm(classification_id, classification_name)
+  res.render("./inventory/deleteClass-confirm", {
+    title: `Delete ${classification_name}?`,
+    nav,
+    errors: null,
+    form
 }
   )}
 
@@ -301,6 +332,39 @@ invCont.deleteInventory = async function (req, res, next) {
     res.redirect("inv/delete/{inv_id}")
     }
   }
+  
+/* **********************************
+ *  Process to Delete Classification Data
+ * ********************************** */
+invCont.deleteClassification = async function (req, res, next) {
+  const classification_id = req.body.classification_id
+  console.log(classification_id)
+  const deleteResult = await invModel.deleteClassification(classification_id)
+  const grid = await utilities.buildLinks("./addClassification", "./add-inventory", "./deleteClassification")
+  let nav = await utilities.getNav()
+  const classificationSelect = await Util.buildClassificationList()
+  if (deleteResult) {
+    req.flash(
+      "notice",
+      `Congratulations, deletion was successful.`
+    )
+    res.status(201).render("./inventory/management", {
+      title: "Vehicle Management",
+      nav,
+      grid,
+      errors,
+      classificationSelect,
+    })
+  } else {
+    req.flash("notice", "Sorry, the deletion failed.")
+    res.status(501).render("./inventory/management", {
+      title: "Vehicle Management",
+      nav,
+      grid,
+      errors: null,
+      classificationSelect,
+    })
+  }}
   
 
 

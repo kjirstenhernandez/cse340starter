@@ -16,7 +16,7 @@
     </ul>
 <% } %>
 
-<form id=acctUpdateForm class="generalForm" action="/account/update" method="post">
+<form id=acctUpdateForm class="form" action="/account/update" method="post">
     <h2>Change Personal Information</h2>
     <label class="above" for="account_firstname">First Name:</label>
     <input type="text" id="account_firstname" name="account_firstname" required
@@ -34,7 +34,7 @@
     <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>"<% } %>>
 </form>
 
-<form id="pswdUpdateForm" class= "generalForm" action="/account/change" method="post">
+<form id="pswdUpdateForm" class= "form" action="/account/change" method="post">
     <h2>Change Password</h2>
     <p>Changing a password will change your current password. </p>
     <p>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</p>

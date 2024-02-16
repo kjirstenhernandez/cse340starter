@@ -21,7 +21,13 @@ router.get("/", utilities.handleErrors(invController.buildManagement));
 // Route to build addClassification page
 router.get("/addClassification", utilities.handleErrors(invController.buildAddClassification));
 
-// Route to build addClassification page
+// Route to build deleteClassification page
+router.get("/deleteClassification", utilities.handleErrors(invController.buildDeleteClassification));
+
+//Build Confirm Delete Classification View
+router.get("/delete-class/:classification_id", utilities.handleErrors(invController.buildDeleteClassificationView)),
+
+// Route to build addInventory page
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
 
 // Processing data for Add Inventory page
@@ -54,11 +60,7 @@ router.post("/update/",
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory))
 
-// Process to Delete Classification
-router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteInventoryView)),
-
-
-router.post("/delete", utilities.handleErrors(invController.deleteInventory))
+router.post("/deleteClass", utilities.handleErrors(invController.deleteClassification))
 
 
 module.exports = router;
