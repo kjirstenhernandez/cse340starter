@@ -338,7 +338,6 @@ invCont.deleteInventory = async function (req, res, next) {
  * ********************************** */
 invCont.deleteClassification = async function (req, res, next) {
   const classification_id = req.body.classification_id
-  console.log(classification_id)
   const deleteResult = await invModel.deleteClassification(classification_id)
   const grid = await utilities.buildLinks("./addClassification", "./add-inventory", "./deleteClassification")
   let nav = await utilities.getNav()
@@ -352,7 +351,7 @@ invCont.deleteClassification = async function (req, res, next) {
       title: "Vehicle Management",
       nav,
       grid,
-      errors,
+      errors: null,
       classificationSelect,
     })
   } else {
